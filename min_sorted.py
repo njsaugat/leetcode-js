@@ -19,5 +19,3 @@ class Solution:
         # return 
 
 print(Solution().min_sorted([4,5,1,2,3]))
-
-        
