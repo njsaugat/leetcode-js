@@ -34,4 +34,4 @@ class Solution:
             # right-=1
             # right=0
             # return res
-print(Solution().spiral_matrix([[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15]]))
+print(Solution().spiral_matrix([[1,2,3],[4,5,6],[7,8,9]])[::-1])
