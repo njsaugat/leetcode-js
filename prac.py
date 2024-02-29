@@ -1,3 +1,4 @@
+import collections  
 class Solution:
     def threeSum(self,nums):
         nums.sort()
@@ -480,7 +481,85 @@ class Solution:
 
     
     
-                    
+    
+
+    def merge_lists(self,list1,list2):
+        temp=head=ListNode()
+        
+        while list1 and list2:
+            
+            if list1.val<list2.val:
+                temp.next=list1
+                list1=list1.next
+            
+            else:
+                temp.next=list2
+                list2=list2.next
+            temp=temp.next
+        
+        temp.next=list1 or list2    
+        return head.next
+    
+    
+    
+    def invertTree(self,root):
+        if not root:
+            return None
+        
+        temp=root.left
+        root.left=root.right
+        root.right=temp
+        
+        self.invertTree(self.left)
+        self.invertTree(self.right)
+        return root
+    
+    
+    def maxDepth(self,root):
+        if not root:
+            return 0
+        
+        
+        return 1+max(self.maxDepth(root.left),self.maxDepth(root.right))
+    
+    
+    def maxDepthQ(self,root):
+        if not root:
+            return 0
+        q=collections.deque([root])
+        levels=0
+        while q:
+            for i in range(len(q)):
+                
+                node=q.popleft()
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            levels+=1          
+        return levels
+    
+    def maxDepthStack(self,root):
+        
+        if not root:
+            return 0
+        
+        levels=0
+        stack=[[root,1]]
+        while stack:
+             
+             node,depth=stack.pop()
+             
+             if node:
+                levels=max(depth,levels)
+                
+                stack.append([node.left,1+depth])
+                stack.append([node.right,1+depth])
+            
+        
+        return levels
+                        
+                           
             
 class ListNode:
     head=None
@@ -502,7 +581,7 @@ head2=ListNode(1,middle2)
 
 
 
-head=Solution().merge_lists_fast(head1,head2)
+head=Solution().merge_lists(head1,head2)
 temp=head
 while(temp):
     print(temp.val)
