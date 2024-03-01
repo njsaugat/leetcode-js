@@ -509,8 +509,23 @@ class Solution:
         return self.isSubTree(root.left,subRoot)or self.isSubTree(root.right,subRoot)
 
 
+# 28
+    def kthSmallest(self,root,k):
+        
+        stack=[]       
+        curr=root
 
+        while stack or curr:
+            while curr:
+                stack.append(curr)
+                curr=curr.left
             
+            curr=stack.pop()
+            k-=1
+            if k==0:
+                return curr.val
+            
+            curr=curr.right
 
             
         
