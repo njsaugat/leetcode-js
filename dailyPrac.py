@@ -472,3 +472,55 @@ class Solution:
             res.append(temp)
         
         return res
+    
+    # 26
+    
+    def isSameTree(self,p,q):
+        if not p and not q:
+            return True
+        
+        if not p or not q:
+            return False
+        
+        if p.val!=q.val:
+            return False
+        
+        return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+
+    # 27
+    def isSubTree(self,tree,subTree):
+        
+        if not subTree:
+            return True
+        
+        if not tree:
+            return False
+        
+        if self.isSameTree(tree,subTree):
+            return True
+        
+        return self.isSubTree(tree.left,subTree) or self.isSubTree(tree.right,subTree)
+    
+    
+    # 28
+    def groupAnagrams(self,words):
+        output={}
+        res=[]
+        for word in words:
+            
+            
+            letters=[0]*26
+            
+            for char in word:
+                diff=ord(char)-ord('a')
+                letters[diff]+=1
+            
+            
+            
+            output[repr(letters)]=output.get(repr(letters),[])
+            output[repr(letters)].append(word)
+        
+        return [value for key,value in output.items()]
+            
+
+print(Solution().groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
