@@ -299,4 +299,4 @@ class Solution:
     
     
     
-print(Solution().findDP1("127"))
+print(Solution().findDP1("11111"))
