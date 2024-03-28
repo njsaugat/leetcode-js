@@ -148,6 +148,22 @@ class Solution:
     
     
     
+    
+    def maxProducts(self,nums):
+        curMin,curMax=1,1
+        res=nums[0]
+        for num in nums:
+            temp=num*curMax
+            curMax=max(num*curMax,num*curMin,num)
+            curMin=max(temp,num*curMin,num)
+            res=max(curMax,res)
+        
+        return res
+    
+    
+    
+        
+    
             
             
         
